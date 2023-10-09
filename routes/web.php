@@ -27,3 +27,5 @@ Route::get('/me/{id}', [UserController::class, 'show'])->name('show.me');
 //     Route::get('', [UserController::class, 'index']);
 //     Route::get('{id}', [UserController::class, 'show'])->name('show.me');
 // });
+
+Route::get('/customers', [CustomerController::class, 'index']);

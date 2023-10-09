@@ -15,6 +15,13 @@ class CustomerController extends Controller
     {
         $this->customerService = $customerService;
     }
+
+    public function index()
+    {
+        $customers = Customer::all();
+
+        return view('Customers.get-list', ['customers' => $customers]);
+    }
     
     public function store(CreateCustomerRequest $request)
     {
