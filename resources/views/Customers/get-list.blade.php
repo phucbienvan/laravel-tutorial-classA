@@ -25,6 +25,7 @@
 <body>
 
     <h2>List customer</h2>
+    <a href="/customers/create">Create customer</a>
 
     <table>
         <tr>

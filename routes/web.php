@@ -28,4 +28,8 @@ Route::get('/me/{id}', [UserController::class, 'show'])->name('show.me');
 //     Route::get('{id}', [UserController::class, 'show'])->name('show.me');
 // });
 
-Route::get('/customers', [CustomerController::class, 'index']);
+Route::group(['prefix' => 'customers'], function () {
+    Route::get('/create', [CustomerController::class, 'create']);
+    Route::post('', [CustomerController::class, 'insert']);
+    Route::get('', [CustomerController::class, 'index'])->name('customers.index');
+});

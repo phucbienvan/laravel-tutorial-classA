@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Customer\CreateCustomerRequest;
+use App\Http\Resources\Customer\CustomerResource;
 use App\Models\Customer;
 use App\Service\CustomerService;
 use Illuminate\Http\Request;
@@ -22,6 +23,22 @@ class CustomerController extends Controller
 
         return view('Customers.get-list', ['customers' => $customers]);
     }
+
+    public function create()
+    {
+        return view('Customers.create');
+    }
+
+    public function insert(CreateCustomerRequest $request)
+    {        
+        $customer = Customer::create($request->validated());
+
+        if ($customer) {
+            return redirect()->route('customers.index');
+        }
+
+        return view('welcome');
+    }
     
     public function store(CreateCustomerRequest $request)
     {
@@ -32,7 +49,7 @@ class CustomerController extends Controller
             if ($customer) {
                 return response()->json([
                     'code' => 200,
-                    'data' => $customer,
+                    'data' => new CustomerResource($customer),
                     'message' => 'create customer success'
                 ]);
             }
