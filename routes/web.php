@@ -32,4 +32,5 @@ Route::group(['prefix' => 'customers'], function () {
     Route::get('/create', [CustomerController::class, 'create']);
     Route::post('', [CustomerController::class, 'insert'])->name('customers.insert');
     Route::get('', [CustomerController::class, 'index'])->name('customers.index');
+    Route::get('/{customer}', [CustomerController::class, 'show'])->name('customers.show');
 });

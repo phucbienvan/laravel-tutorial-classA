@@ -43,6 +43,11 @@ class CustomerController extends Controller
             'fail' => 'Da tao customer that bai'
         ]);
     }
+
+    public function show(Customer $customer)
+    {        
+        return view('customers.detail', ['customer' => $customer]);
+    }
     
     public function store(CreateCustomerRequest $request)
     {

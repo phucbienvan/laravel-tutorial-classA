@@ -23,29 +23,21 @@
 </head>
 
 <body>
-
-    <h2>List customer</h2>
+    <h2>Detail customer</h2>
     <a href="/customers/create">Create customer</a>
-
     <table>
         <tr>
             <th>Id</th>
             <th>Name</th>
             <th>Phone</th>
         </tr>
-        @foreach($customers as $customer)
-        @if($customer->id > 3)
         <tr>
             <td>{{ $customer->id }}</td>
             <td>
-                <a href="{{ route('customers.show', $customer->id) }}">
-                    {{ $customer->name }}
-                </a>
+                {{ $customer->name }}
             </td>
             <td>{{ $customer->phone }}</td>
         </tr>
-        @endif
-        @endforeach
     </table>
 </body>
 
