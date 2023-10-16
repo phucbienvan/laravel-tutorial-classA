@@ -54,6 +54,21 @@ class CustomerController extends Controller
         return view('customers.edit', ['customer' => $customer]);
     }
 
+    public function delete(Customer $customer)
+    {
+        return view('customers.delete', ['customer' => $customer]);
+    }
+
+    public function destroy(Customer $customer)
+    {
+        if (!$customer) {
+            return redirect()->route('customers.index')->with(['fail', 'Not Found Id.']);
+        }
+        $customer->delete();
+        
+        return  redirect()->route('customers.index')->with('success', 'Delete success.');
+        
+    }
     public function update(Customer $customer, CreateCustomerRequest $request)
     {
         $check = $customer->update($request->validated());
