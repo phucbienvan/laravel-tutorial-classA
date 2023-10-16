@@ -32,6 +32,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Phone</th>
+            <th>Action</th>
         </tr>
         @foreach($customers as $customer)
         @if($customer->id > 3)
@@ -43,6 +44,11 @@
                 </a>
             </td>
             <td>{{ $customer->phone }}</td>
+            <td>
+                <a href="{{ route('customers.edit', $customer->id) }}">
+                    Edit
+                </a>
+            </td>
         </tr>
         @endif
         @endforeach

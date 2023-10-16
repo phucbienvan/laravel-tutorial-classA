@@ -48,6 +48,26 @@ class CustomerController extends Controller
     {        
         return view('customers.detail', ['customer' => $customer]);
     }
+
+    public function edit(Customer $customer)
+    {
+        return view('customers.edit', ['customer' => $customer]);
+    }
+
+    public function update(Customer $customer, CreateCustomerRequest $request)
+    {
+        $check = $customer->update($request->validated());
+
+        if ($check) {
+            return redirect()->back()->with([
+                'success' => 'Chinh sua customer thanh cong'
+            ]);
+        }
+
+        return redirect()->back()->with([
+            'fail' => 'Chinh sua customer that bai'
+        ]);
+    }
     
     public function store(CreateCustomerRequest $request)
     {
