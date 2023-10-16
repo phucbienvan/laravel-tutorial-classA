@@ -26,4 +26,14 @@ class CreateCustomerRequest extends FormRequest
             'phone' => ['required', 'min:10', 'max:11'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Khong duoc bo trong ten',
+            'name.max' => 'Khong duoc lon hon 255 ki tu',
+            'phone.required' => 'Khong duoc bo trong phone',
+        
+        ];
+    }
 }

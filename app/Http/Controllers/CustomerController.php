@@ -34,10 +34,14 @@ class CustomerController extends Controller
         $customer = Customer::create($request->validated());
 
         if ($customer) {
-            return redirect()->route('customers.index');
+            return redirect()->back()->with([
+                'success' => 'Da tao customer thanh cong'
+            ]);
         }
 
-        return view('welcome');
+        return redirect()->back()->with([
+            'fail' => 'Da tao customer that bai'
+        ]);
     }
     
     public function store(CreateCustomerRequest $request)
