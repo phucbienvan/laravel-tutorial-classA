@@ -33,6 +33,7 @@
             <th>Name</th>
             <th>Phone</th>
             <th>Action</th>
+            <th>Action</th>
         </tr>
         @foreach($customers as $customer)
         @if($customer->id > 3)
@@ -48,6 +49,9 @@
                 <a href="{{ route('customers.edit', $customer->id) }}">
                     Edit
                 </a>
+            </td>
+            <td>
+                <a class="btn btn-danger" onclick="return confirm('Ban co muon xoa customer khong?')" href="{{ route('customers.delete', $customer->id) }}">Delete</a>
             </td>
         </tr>
         @endif

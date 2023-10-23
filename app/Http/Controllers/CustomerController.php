@@ -68,6 +68,22 @@ class CustomerController extends Controller
             'fail' => 'Chinh sua customer that bai'
         ]);
     }
+
+    public function delete(Customer $customer)
+    {
+        $check = $customer->delete();
+        
+
+        if ($check) {
+            return redirect()->back()->with([
+                'success' => 'Xoa customer thanh cong'
+            ]);
+        }
+
+        return redirect()->back()->with([
+            'fail' => 'Xoa customer that bai'
+        ]);
+    }
     
     public function store(CreateCustomerRequest $request)
     {
