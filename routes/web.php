@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -23,10 +24,11 @@ Route::get('/me', [UserController::class, 'index']);
 
 Route::get('/me/{id}', [UserController::class, 'show'])->name('show.me');
 
-// Route::group(['prefix' => 'me'], function () {
-//     Route::get('', [UserController::class, 'index']);
-//     Route::get('{id}', [UserController::class, 'show'])->name('show.me');
-// });
+Route::get('form-login', [AuthController::class, 'getFormLogin'])->name('get_form_login');
+Route::post('login', [AuthController::class, 'login'])->name('login');
+
+Route::get('form-register', [AuthController::class, 'getFormRegister'])->name('get_form_register');
+Route::post('register', [AuthController::class, 'register'])->name('register');
 
 Route::group(['prefix' => 'customers'], function () {
     Route::get('/create', [CustomerController::class, 'create']);
