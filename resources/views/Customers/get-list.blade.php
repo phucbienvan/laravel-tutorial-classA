@@ -26,6 +26,9 @@
 
     <h2>List customer</h2>
     <a href="/customers/create">Create customer</a>
+    <br>
+
+    <a href="{{ route('logout') }}">LogOut</a>
 
     <table>
         <tr>

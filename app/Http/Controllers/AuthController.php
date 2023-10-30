@@ -47,4 +47,11 @@ class AuthController extends Controller
             'fail' => 'Da tao user that bai'
         ]);
     }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('get_form_login');
+    }
 }

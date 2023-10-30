@@ -30,12 +30,15 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::get('form-register', [AuthController::class, 'getFormRegister'])->name('get_form_register');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 
-Route::group(['prefix' => 'customers'], function () {
-    Route::get('/create', [CustomerController::class, 'create']);
-    Route::post('', [CustomerController::class, 'insert'])->name('customers.insert');
-    Route::get('', [CustomerController::class, 'index'])->name('customers.index');
-    Route::get('/{customer}', [CustomerController::class, 'show'])->name('customers.show');
-    Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name('customers.edit');
-    Route::post('/update/{customer}', [CustomerController::class, 'update'])->name('customers.update');
-    Route::get('delete/{customer}', [CustomerController::class, 'delete'])->name('customers.delete');
+Route::group(['middleware' => 'userLogin'], function() {
+    Route::get('logout', [AuthController::class,'logout'])->name('logout');
+    Route::group(['prefix' => 'customers'], function () {
+        Route::get('/create', [CustomerController::class, 'create']);
+        Route::post('', [CustomerController::class, 'insert'])->name('customers.insert');
+        Route::get('', [CustomerController::class, 'index'])->name('customers.index');
+        Route::get('/{customer}', [CustomerController::class, 'show'])->name('customers.show');
+        Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name('customers.edit');
+        Route::post('/update/{customer}', [CustomerController::class, 'update'])->name('customers.update');
+        Route::get('delete/{customer}', [CustomerController::class, 'delete'])->name('customers.delete');
+    });
 });
